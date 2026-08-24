@@ -1,20 +1,23 @@
 # Hazara
 
 An e-commerce storefront: product catalog, cart, checkout via Stripe (EUR/AUD), and email/password
-accounts. Built with Next.js (App Router), Prisma/SQLite, NextAuth, and Stripe Checkout.
+accounts. Built with Next.js (App Router), Prisma/Postgres, NextAuth, and Stripe Checkout.
 
 ## Stack
 
 - Next.js 14 (App Router) + TypeScript + Tailwind CSS
-- Prisma + SQLite (`dev.db`) — swap the datasource for Postgres/MySQL when you outgrow it
+- Prisma + Postgres
 - NextAuth (Credentials provider, bcrypt-hashed passwords)
 - Stripe Checkout (hosted payment page, currency-aware: EUR or AUD)
 
 ## Getting started
 
+You need a Postgres database to point at — the easiest free option is
+[neon.tech](https://neon.tech) (sign up, create a project, copy the connection string).
+
 ```bash
 npm install
-cp .env.example .env   # fill in real values, see below
+cp .env.example .env   # fill in real values, see below (DATABASE_URL, etc.)
 npx prisma migrate dev
 npm run dev
 ```
@@ -25,7 +28,7 @@ Visit http://localhost:3000.
 
 | Variable | Purpose |
 | --- | --- |
-| `DATABASE_URL` | SQLite file path, defaults to `file:./dev.db` |
+| `DATABASE_URL` | Postgres connection string (e.g. from Neon, Vercel Storage, or a local Postgres) |
 | `NEXTAUTH_SECRET` | Random string used to sign session tokens (`openssl rand -base64 32`) |
 | `NEXTAUTH_URL` | Base URL of the app, e.g. `http://localhost:3000` |
 | `STRIPE_SECRET_KEY` | Your Stripe secret key (test or live) |
@@ -57,6 +60,32 @@ put your own images in `public/products/` (or point `imageUrl` at any hosted ima
 host to `remotePatterns` in `next.config.mjs`) — not images pulled from Pinterest or other sites,
 since those are generally someone else's copyrighted photos without a license to reuse commercially.
 
+## Deploying to Vercel
+
+1. Push this branch, then go to [vercel.com](https://vercel.com) and sign up/log in with GitHub
+   (free).
+2. **Add New → Project**, import the `Hazara-Website` repo, and pick this branch. Leave build
+   settings as default (Next.js is auto-detected).
+3. Before the first deploy, add a database: in the project, go to **Storage → Create Database →
+   Postgres** (powered by Neon). This automatically sets `DATABASE_URL` for you.
+4. Add the remaining environment variables under **Settings → Environment Variables**:
+   - `NEXTAUTH_SECRET` — any random string (`openssl rand -base64 32`)
+   - `NEXTAUTH_URL` — your Vercel URL, e.g. `https://your-project.vercel.app`
+   - `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` — test-mode keys from
+     [dashboard.stripe.com/test/apikeys](https://dashboard.stripe.com/test/apikeys) (real
+     checkout won't work until these are real)
+   - `STRIPE_WEBHOOK_SECRET` — create a webhook in the Stripe dashboard pointing at
+     `https://your-project.vercel.app/api/webhooks/stripe`, then copy its signing secret here
+5. Deploy. Once it's live, run the schema + seed against the production database once (locally,
+   with `DATABASE_URL` in your shell set to the same value Vercel is using):
+   ```bash
+   npx prisma migrate deploy
+   npx prisma db seed
+   ```
+6. Visit your `.vercel.app` URL — the site is live and clickable.
+
+Every push to this branch redeploys automatically once the project is linked.
+
 ## What's included
 
 - Product grid (`/`) and product detail pages (`/product/[slug]`)
@@ -73,10 +102,7 @@ since those are generally someone else's copyrighted photos without a license to
 
 ## Before going live
 
-- Add real Stripe keys and set up a production webhook endpoint pointing at
-  `/api/webhooks/stripe`
-- Move off SQLite to a hosted database (Postgres works well with Prisma) since SQLite's file
-  won't survive most serverless deployments
+- Add real Stripe keys (live mode, not test) and confirm the production webhook is receiving events
 - This project currently pins `next@14.2.x`. A known advisory
   (GHSA-955p-x3mx-jcvp) affecting the 14.x line is only fixed in Next.js 16 — plan an upgrade
   before accepting real payments in production
