@@ -10,12 +10,21 @@ const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 // store (e.g. HAZARA_POSTGRES_PRISMA_URL) rather than plain DATABASE_URL, so
 // resolve whichever one actually exists here, in code that does run with
 // real env access, and pass it explicitly instead of relying on DATABASE_URL
-// being hand-configured correctly in the dashboard.
-const datasourceUrl =
-  process.env.DATABASE_URL ||
-  process.env.HAZARA_POSTGRES_PRISMA_URL ||
-  process.env.HAZARA_DATABASE_URL ||
-  process.env.HAZARA_POSTGRES_URL;
+// being hand-configured correctly in the dashboard. Validate each candidate
+// looks like an actual connection string rather than just checking it's
+// non-empty — a hand-edited DATABASE_URL that ended up containing the wrong
+// text (e.g. a variable name pasted by mistake) is non-empty but not usable,
+// and would otherwise shadow the real value in a later candidate.
+function isPostgresUrl(value: string | undefined): value is string {
+  return !!value && (value.startsWith("postgresql://") || value.startsWith("postgres://"));
+}
+
+const datasourceUrl = [
+  process.env.DATABASE_URL,
+  process.env.HAZARA_POSTGRES_PRISMA_URL,
+  process.env.HAZARA_DATABASE_URL,
+  process.env.HAZARA_POSTGRES_URL,
+].find(isPostgresUrl);
 
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({ datasourceUrl });
 
