@@ -4,8 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { AddToCartButton } from "@/components/add-to-cart-button";
 import { ProductPrice } from "@/components/product-price";
 
-export const dynamic = "force-dynamic";
-
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   const product = await prisma.product.findUnique({ where: { slug: params.slug } });
   if (!product) notFound();
