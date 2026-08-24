@@ -41,18 +41,21 @@ stripe listen --forward-to localhost:3000/api/webhooks/stripe
 
 ## Products
 
-20 placeholder products are seeded via `prisma/seed.ts` (`npx prisma db seed`) so the site has
-something to show. Each product stores a price in both EUR and AUD (`priceEURCents` /
-`priceAUDCents`) — there's no live currency conversion, so update both fields when you set real
-prices. Replace the placeholder entries with real product data (name, description, image URL,
-prices) directly in that file, or manage them via Prisma Studio:
+The current seed (`prisma/seed.ts`, run via `npx prisma db seed`) is a small **test catalog**:
+3 phone cases + 3 t-shirts/hoodie, so the interface can be reviewed end to end. Each product
+stores a price in both EUR and AUD (`priceEURCents` / `priceAUDCents`) — there's no live currency
+conversion, so update both fields when you set real prices. Replace the entries with real product
+data (name, description, image, prices) directly in that file, or manage them via Prisma Studio:
 
 ```bash
 npx prisma studio
 ```
 
-Product images currently point at https://picsum.photos placeholders — swap `imageUrl` for your
-own hosted product photos (and add the image host to `remotePatterns` in `next.config.mjs`).
+Product images for the test catalog are simple generated placeholders in `public/products/`
+(local files, so they always load regardless of network conditions). For real product photos,
+put your own images in `public/products/` (or point `imageUrl` at any hosted image and add that
+host to `remotePatterns` in `next.config.mjs`) — not images pulled from Pinterest or other sites,
+since those are generally someone else's copyrighted photos without a license to reuse commercially.
 
 ## What's included
 
