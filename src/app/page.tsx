@@ -14,9 +14,9 @@ export default async function HomePage() {
             Hazara collection
           </p>
           <div className="mt-4 flex items-center justify-center gap-4">
-            <FloralMotif className="h-6 w-6 text-accent-400" />
+            <FloralMotif className="h-10 w-10 text-accent-400" />
             <h1 className="font-display text-4xl text-brand-900">Handcrafted goods</h1>
-            <FloralMotif className="h-6 w-6 text-accent-400" />
+            <FloralMotif className="h-10 w-10 text-accent-400" />
           </div>
           <p className="mx-auto mt-4 max-w-sm text-brand-600">
             A small collection of pieces made with motifs and techniques rooted in Hazara

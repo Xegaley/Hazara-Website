@@ -23,7 +23,7 @@ export default async function AccountPage() {
   return (
     <div className="mx-auto max-w-2xl">
       <h1 className="mb-1 flex items-center gap-2.5 font-display text-2xl text-brand-900">
-        <FloralMotif className="h-5 w-5 text-accent-400" />
+        <FloralMotif className="h-8 w-8 text-accent-400" />
         Your account
       </h1>
       <p className="mb-10 text-brand-600">{session.user.email}</p>

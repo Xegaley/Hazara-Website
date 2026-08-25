@@ -46,9 +46,9 @@ export default function CartPage() {
     return (
       <div className="mx-auto max-w-2xl text-center">
         <div className="flex items-center justify-center gap-3">
-          <FloralMotif className="h-5 w-5 text-accent-400" />
+          <FloralMotif className="h-8 w-8 text-accent-400" />
           <h1 className="font-display text-2xl text-brand-900">Your cart</h1>
-          <FloralMotif className="h-5 w-5 text-accent-400" />
+          <FloralMotif className="h-8 w-8 text-accent-400" />
         </div>
         <p className="mt-3 text-brand-600">
           Your cart is empty.{" "}
@@ -65,7 +65,7 @@ export default function CartPage() {
     <div className="mx-auto max-w-2xl">
       <div className="mb-8 flex items-center justify-between">
         <h1 className="flex items-center gap-2.5 font-display text-2xl text-brand-900">
-          <FloralMotif className="h-5 w-5 text-accent-400" />
+          <FloralMotif className="h-8 w-8 text-accent-400" />
           Your cart
         </h1>
         <select

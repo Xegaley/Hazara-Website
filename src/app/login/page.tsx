@@ -36,9 +36,9 @@ export default function LoginPage() {
   return (
     <div className="mx-auto max-w-sm">
       <div className="mb-8 flex items-center justify-center gap-3">
-        <FloralMotif className="h-5 w-5 text-accent-400" />
+        <FloralMotif className="h-8 w-8 text-accent-400" />
         <h1 className="font-display text-2xl text-brand-900">Log in</h1>
-        <FloralMotif className="h-5 w-5 text-accent-400" />
+        <FloralMotif className="h-8 w-8 text-accent-400" />
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

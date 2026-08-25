@@ -50,25 +50,25 @@ export function FloralDivider({
   tone?: string;
 }) {
   return (
-    <svg className={`h-7 w-full ${tone} ${className}`} preserveAspectRatio="none" aria-hidden="true">
+    <svg className={`h-12 w-full ${tone} ${className}`} preserveAspectRatio="none" aria-hidden="true">
       <defs>
-        <pattern id={id} width="48" height="28" patternUnits="userSpaceOnUse">
+        <pattern id={id} width="72" height="48" patternUnits="userSpaceOnUse">
           <path
-            d="M-4 14 Q8 3 20 14 Q32 25 44 14 Q56 3 68 14"
+            d="M-6 24 Q12 5 30 24 Q48 43 66 24 Q84 5 102 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="0.75"
+            strokeWidth="1"
             opacity="0.55"
           />
-          <g transform="translate(8 8)">
-            <Rosette scale={0.85} />
+          <g transform="translate(12 14)">
+            <Rosette scale={1.5} />
           </g>
-          <g transform="translate(32 20)">
-            <Rosette scale={0.85} />
+          <g transform="translate(48 34)">
+            <Rosette scale={1.5} />
           </g>
         </pattern>
       </defs>
-      <rect width="100%" height="28" fill={`url(#${id})`} />
+      <rect width="100%" height="48" fill={`url(#${id})`} />
     </svg>
   );
 }
@@ -92,9 +92,9 @@ export function FloralField({
       aria-hidden="true"
     >
       <defs>
-        <pattern id={id} width="72" height="72" patternUnits="userSpaceOnUse">
-          <g transform="translate(36 36)">
-            <Rosette scale={2.2} />
+        <pattern id={id} width="120" height="120" patternUnits="userSpaceOnUse">
+          <g transform="translate(60 60)">
+            <Rosette scale={3.8} />
           </g>
         </pattern>
       </defs>
