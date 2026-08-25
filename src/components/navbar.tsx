@@ -22,6 +22,10 @@ export function Navbar() {
         </Link>
 
         <nav className="flex items-center gap-6 text-sm text-brand-700">
+          <Link href="/gallery" className="hover:text-accent-600">
+            Gallery
+          </Link>
+
           <select
             aria-label="Currency"
             value={currency}
