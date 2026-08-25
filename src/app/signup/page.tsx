@@ -43,51 +43,51 @@ export default function SignupPage() {
 
   return (
     <div className="mx-auto max-w-sm">
-      <h1 className="mb-6 text-2xl font-semibold text-brand-800">Create an account</h1>
+      <h1 className="mb-8 text-center font-display text-2xl text-brand-900">Create an account</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="mb-1 block text-sm text-brand-700">Name (optional)</label>
+          <label className="mb-1 block text-sm text-brand-600">Name (optional)</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full rounded border border-brand-300 px-3 py-2"
+            className="w-full rounded-md border border-brand-200 px-3 py-2.5"
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm text-brand-700">Email</label>
+          <label className="mb-1 block text-sm text-brand-600">Email</label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded border border-brand-300 px-3 py-2"
+            className="w-full rounded-md border border-brand-200 px-3 py-2.5"
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm text-brand-700">Password</label>
+          <label className="mb-1 block text-sm text-brand-600">Password</label>
           <input
             type="password"
             required
             minLength={8}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded border border-brand-300 px-3 py-2"
+            className="w-full rounded-md border border-brand-200 px-3 py-2.5"
           />
           <p className="mt-1 text-xs text-brand-500">At least 8 characters.</p>
         </div>
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <p className="text-sm text-accent-600">{error}</p>}
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded bg-brand-700 px-4 py-2 text-white hover:bg-brand-800 disabled:opacity-60"
+          className="w-full rounded-md bg-accent-600 px-4 py-2.5 text-white transition hover:bg-accent-700 disabled:opacity-60"
         >
           {loading ? "Creating account..." : "Sign up"}
         </button>
       </form>
-      <p className="mt-4 text-sm text-brand-700">
+      <p className="mt-5 text-center text-sm text-brand-600">
         Already have an account?{" "}
-        <Link href="/login" className="underline">
+        <Link href="/login" className="text-accent-600 underline underline-offset-2">
           Log in
         </Link>
       </p>

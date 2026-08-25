@@ -17,6 +17,17 @@ const config: Config = {
           800: "#452d18",
           900: "#2c1c0f",
         },
+        accent: {
+          50: "#fbf1ed",
+          100: "#f4dbd2",
+          300: "#d99c85",
+          500: "#b1503a",
+          600: "#973f2c",
+          700: "#7a3123",
+        },
+      },
+      fontFamily: {
+        display: ["Georgia", "Cambria", "ui-serif", "serif"],
       },
     },
   },

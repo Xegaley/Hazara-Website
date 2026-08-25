@@ -43,11 +43,11 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div>
-        <h1 className="mb-4 text-2xl font-semibold text-brand-800">Your cart</h1>
-        <p className="text-brand-600">
+      <div className="mx-auto max-w-2xl text-center">
+        <h1 className="font-display text-2xl text-brand-900">Your cart</h1>
+        <p className="mt-3 text-brand-600">
           Your cart is empty.{" "}
-          <Link href="/" className="underline">
+          <Link href="/" className="text-accent-600 underline underline-offset-2">
             Continue shopping
           </Link>
           .
@@ -58,13 +58,13 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-brand-800">Your cart</h1>
+      <div className="mb-8 flex items-center justify-between">
+        <h1 className="font-display text-2xl text-brand-900">Your cart</h1>
         <select
           aria-label="Currency"
           value={currency}
           onChange={(e) => setCurrency(e.target.value as (typeof CURRENCIES)[number])}
-          className="rounded border border-brand-300 bg-white px-2 py-1"
+          className="rounded-full border border-brand-200 bg-transparent px-3 py-1 text-sm text-brand-700"
         >
           {CURRENCIES.map((c) => (
             <option key={c} value={c}>
@@ -77,14 +77,14 @@ export default function CartPage() {
       <ul className="divide-y divide-brand-200">
         {items.map((item) => (
           <li key={item.productId} className="flex items-center gap-4 py-4">
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded bg-brand-100">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md bg-brand-100">
               <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
             </div>
             <div className="flex-1">
-              <Link href={`/product/${item.slug}`} className="font-medium text-brand-800 hover:underline">
+              <Link href={`/product/${item.slug}`} className="text-brand-800 hover:text-accent-600">
                 {item.name}
               </Link>
-              <p className="text-sm text-brand-600">
+              <p className="text-sm text-brand-500">
                 {formatPrice(priceForCurrency(item, currency), currency)} each
               </p>
             </div>
@@ -93,11 +93,11 @@ export default function CartPage() {
               min={1}
               value={item.quantity}
               onChange={(e) => setQuantity(item.productId, Math.max(1, Number(e.target.value) || 1))}
-              className="w-16 rounded border border-brand-300 px-2 py-1"
+              className="w-16 rounded-md border border-brand-200 px-2 py-1.5 text-center"
             />
             <button
               onClick={() => removeItem(item.productId)}
-              className="text-sm text-brand-500 hover:text-red-600"
+              className="text-sm text-brand-400 hover:text-accent-600"
             >
               Remove
             </button>
@@ -105,17 +105,17 @@ export default function CartPage() {
         ))}
       </ul>
 
-      <div className="mt-6 flex items-center justify-between border-t border-brand-200 pt-4">
-        <span className="text-lg font-medium text-brand-800">Total</span>
-        <span className="text-lg font-medium text-brand-800">{formatPrice(total, currency)}</span>
+      <div className="mt-6 flex items-center justify-between border-t border-brand-200 pt-5">
+        <span className="text-brand-800">Total</span>
+        <span className="text-lg text-brand-900">{formatPrice(total, currency)}</span>
       </div>
 
-      {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
+      {error && <p className="mt-3 text-sm text-accent-600">{error}</p>}
 
       <button
         onClick={handleCheckout}
         disabled={loading}
-        className="mt-6 w-full rounded bg-brand-700 px-4 py-3 text-white hover:bg-brand-800 disabled:opacity-60"
+        className="mt-6 w-full rounded-md bg-accent-600 px-4 py-3 text-white transition hover:bg-accent-700 disabled:opacity-60"
       >
         {loading ? "Redirecting to checkout..." : "Checkout"}
       </button>

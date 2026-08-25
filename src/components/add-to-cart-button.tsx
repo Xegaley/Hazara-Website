@@ -28,7 +28,7 @@ export function AddToCartButton({
         min={1}
         value={quantity}
         onChange={(e) => setQuantity(Math.max(1, Number(e.target.value) || 1))}
-        className="w-16 rounded border border-brand-300 px-2 py-2"
+        className="w-16 rounded-md border border-brand-200 px-2 py-2.5 text-center"
       />
       <button
         onClick={() => {
@@ -46,7 +46,7 @@ export function AddToCartButton({
           setAdded(true);
           router.refresh();
         }}
-        className="rounded bg-brand-700 px-4 py-2 text-white hover:bg-brand-800"
+        className="rounded-md bg-accent-600 px-6 py-2.5 text-white transition hover:bg-accent-700"
       >
         {added ? "Added" : "Add to cart"}
       </button>

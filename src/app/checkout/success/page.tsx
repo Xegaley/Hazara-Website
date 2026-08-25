@@ -14,12 +14,15 @@ export default function CheckoutSuccessPage() {
 
   return (
     <div className="mx-auto max-w-md text-center">
-      <h1 className="mb-4 text-2xl font-semibold text-brand-800">Thank you for your order</h1>
-      <p className="mb-6 text-brand-600">
+      <h1 className="mb-4 font-display text-2xl text-brand-900">Thank you for your order</h1>
+      <p className="mb-8 text-brand-600">
         Your payment was successful. A confirmation will be reflected in your account once
         processed.
       </p>
-      <Link href="/" className="rounded bg-brand-700 px-4 py-2 text-white hover:bg-brand-800">
+      <Link
+        href="/"
+        className="inline-block rounded-md bg-accent-600 px-5 py-2.5 text-white transition hover:bg-accent-700"
+      >
         Continue shopping
       </Link>
     </div>
