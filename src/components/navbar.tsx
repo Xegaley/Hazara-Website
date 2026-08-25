@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useCart } from "@/lib/cart-context";
 import { CURRENCIES } from "@/lib/currency";
-import { PatternDivider } from "@/components/pattern-divider";
+import { FloralDivider } from "@/components/floral-motif";
 
 export function Navbar() {
   const { data: session, status } = useSession();
@@ -65,7 +65,7 @@ export function Navbar() {
           )}
         </nav>
       </div>
-      <PatternDivider id="navbar-pattern" />
+      <FloralDivider id="navbar-pattern" />
     </header>
   );
 }

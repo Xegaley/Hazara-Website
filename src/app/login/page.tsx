@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { FloralMotif } from "@/components/floral-motif";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -34,7 +35,11 @@ export default function LoginPage() {
 
   return (
     <div className="mx-auto max-w-sm">
-      <h1 className="mb-8 text-center font-display text-2xl text-brand-900">Log in</h1>
+      <div className="mb-8 flex items-center justify-center gap-3">
+        <FloralMotif className="h-5 w-5 text-accent-400" />
+        <h1 className="font-display text-2xl text-brand-900">Log in</h1>
+        <FloralMotif className="h-5 w-5 text-accent-400" />
+      </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="mb-1 block text-sm text-brand-600">Email</label>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
 import { CURRENCIES, formatPrice, priceForCurrency } from "@/lib/currency";
+import { FloralMotif } from "@/components/floral-motif";
 
 export default function CartPage() {
   const { items, currency, setCurrency, setQuantity, removeItem } = useCart();
@@ -44,7 +45,11 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-2xl text-center">
-        <h1 className="font-display text-2xl text-brand-900">Your cart</h1>
+        <div className="flex items-center justify-center gap-3">
+          <FloralMotif className="h-5 w-5 text-accent-400" />
+          <h1 className="font-display text-2xl text-brand-900">Your cart</h1>
+          <FloralMotif className="h-5 w-5 text-accent-400" />
+        </div>
         <p className="mt-3 text-brand-600">
           Your cart is empty.{" "}
           <Link href="/" className="text-accent-600 underline underline-offset-2">
@@ -59,7 +64,10 @@ export default function CartPage() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="font-display text-2xl text-brand-900">Your cart</h1>
+        <h1 className="flex items-center gap-2.5 font-display text-2xl text-brand-900">
+          <FloralMotif className="h-5 w-5 text-accent-400" />
+          Your cart
+        </h1>
         <select
           aria-label="Currency"
           value={currency}
